@@ -152,8 +152,8 @@ class VAETask(pl.LightningModule):
 
     def configure_optimizers(self):
         params = filter(lambda p: p.requires_grad, self.model.parameters())
-        optimizer = torch.optim.Adam(
-            params, lr=self.lr, eps=0.01, weight_decay=self.weight_decay
+        optimizer = torch.optim.AdamW(
+            params, lr=self.lr, weight_decay=self.weight_decay
         )
         config = {"optimizer": optimizer}
         if self.reduce_lr_on_plateau:
